@@ -1,0 +1,34 @@
+(function() {
+    var pageHeight = 0;
+
+    function findHighestNode(nodesList) {
+        for (var i = nodesList.length - 1; i >= 0; i--) {
+            if (nodesList[i].scrollHeight && nodesList[i].clientHeight) {
+                var elHeight = Math.max(nodesList[i].scrollHeight, nodesList[i].clientHeight);
+                pageHeight = Math.max(elHeight, pageHeight);
+            }
+            if (nodesList[i].childNodes.length) findHighestNode(nodesList[i].childNodes);
+        }
+    }
+
+    findHighestNode(document.documentElement.childNodes);
+    console.log(pageHeight);
+})();
+
+
+// 중요 - inappwebview 에서 스크린 사이즈 얻어오는 방법
+https://stackoverflow.com/questions/66477207/flutter-and-inappwebview-how-to-get-height
+
+
+// inappwebview 의 getContentHeight를 이용한 높이 계산 방법
+int? contentHeight = await _controller?.getContentHeight();
+            double? zoomScale = await _controller?.getZoomScale();
+            double htmlHeight = contentHeight!.toDouble() * zoomScale!;
+            double htmlHeightFixed =
+                double.parse(htmlHeight.toStringAsFixed(2));
+            if (htmlHeightFixed == 0.0) {
+              return;
+            }
+            setState(() {
+              _htmlHeight = htmlHeightFixed + 0.1;
+            });

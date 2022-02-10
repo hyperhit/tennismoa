@@ -110,7 +110,7 @@ class _VideoScreenState extends State<VideoScreen> with SingleTickerProviderStat
 
   Widget _buildAteTv() {
     //아테티비
-    const String url = 'https://youtube.com/c/ATEtv/vidoes';
+    const String url = 'https://www.youtube.com/c/ATEtv/videos';
     return const VideoWebView(siteUrl: url);
   }
 

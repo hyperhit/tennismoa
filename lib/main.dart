@@ -7,7 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'screen/tournament_screen.dart';
 import 'screen/video_screen.dart';
 import 'screen/news_screen.dart';
-import 'screen/friend_screen.dart';
+import 'screen/together_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/tournament': (context) => TournamentScreen(),
         '/video': (context) => VideoScreen(),
         '/news': (context) => NewsScreen(),
-        '/friend': (context) => FriendScreen(),
+        '/friend': (context) => TogetherScreen(),
       },
     );
   }
@@ -41,7 +41,7 @@ class _TennisMoaState extends State<TennisMoa> {
   final controller = ScrollController();
   int _selectedIndex = 0;
 
-  final List _screens = const [TournamentScreen(), VideoScreen(), NewsScreen(), FriendScreen()];
+  final List _screens = const [TournamentScreen(), VideoScreen(), NewsScreen(), TogetherScreen()];
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class _TennisMoaState extends State<TennisMoa> {
           BottomNavigationBarItem(icon: Icon(Icons.emoji_events_outlined), label: '대회'),
           BottomNavigationBarItem(icon: Icon(Icons.smart_display_outlined), label: '동영상'),
           BottomNavigationBarItem(icon: Icon(Icons.feed_outlined), label: '뉴스'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_search_outlined), label: '친구찾기'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_search_outlined), label: '함께해요'),
         ],
       ),
     );

@@ -5,19 +5,21 @@ import 'package:tennismoa/widget/common_webview.dart';
 import 'package:tennismoa/util/dot_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class FriendScreen extends StatefulWidget {
-  const FriendScreen({Key? key}) : super(key: key);
+class TogetherScreen extends StatefulWidget {
+  const TogetherScreen({Key? key}) : super(key: key);
 
   @override
-  _FriendScreenState createState() => _FriendScreenState();
+  _TogetherScreenState createState() => _TogetherScreenState();
 }
 
-class _FriendScreenState extends State<FriendScreen> with SingleTickerProviderStateMixin {
+class _TogetherScreenState extends State<TogetherScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   static const List<Tab> _tabs = [
-    Tab(child: Text('네이버 테니스 친구찾기')),
-    Tab(child: Text('밴드 테니스 친구찾기')),
+    Tab(child: Text('네이버 테친찾기')),
+    Tab(child: Text('밴드 테친찾기')),
+    Tab(child: Text('네이버 중고라켓')),
+    Tab(child: Text('밴드 중고라켓')),
   ];
 
   @override
@@ -51,21 +53,28 @@ class _FriendScreenState extends State<FriendScreen> with SingleTickerProviderSt
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
-          _buildNaver(),
-          _buildBand(),
-        ],
+        children: [_buildNFriend(), _buildBFriend(), _buildNUsed(), _buildBUsed()],
       ),
     );
   }
 
-  Widget _buildNaver() {
+  Widget _buildNFriend() {
     const url = 'https://m.cafe.naver.com/ca-fe/homecookie';
     return const CommonWebView(siteUrl: url);
   }
 
-  Widget _buildBand() {
+  Widget _buildBFriend() {
     const url = 'https://band.us/band/57302810';
+    return const CommonWebView(siteUrl: url);
+  }
+
+  Widget _buildNUsed() {
+    const url = 'https://m.cafe.naver.com/ca-fe/joonggossada';
+    return const CommonWebView(siteUrl: url);
+  }
+
+  Widget _buildBUsed() {
+    const url = 'https://band.us/band/59013894';
     return const CommonWebView(siteUrl: url);
   }
 }

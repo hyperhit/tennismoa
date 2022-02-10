@@ -286,12 +286,12 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
                   onPageFinished: (url) async {
                     /* 웹페이지 길이를 어떻게 읽어오는냐고 문제 해결의 관건임 */
 
-                    _getWebPageHeight().then((double height) {
-                      print("Height:  " + height.toString());
-                      setState(() {
-                        _height = height.toDouble();
-                      });
-                    });
+                    // _getWebPageHeight().then((double height) {
+                    //   print("Height:  " + height.toString());
+                    //   setState(() {
+                    //     _height = height.toDouble();
+                    //   });
+                    // });
 
                     // _controller.evaluateJavascript("element.offsetHeight;").then((String str) {
                     //   setState(() {

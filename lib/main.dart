@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tennismoa/temp/hide_navigation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'screen/tournament_screen.dart';
@@ -10,6 +11,10 @@ import 'screen/news_screen.dart';
 import 'screen/together_screen.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //systemNavigationBarColor: Colors.white, // navigation bar color
+    statusBarColor: Colors.white, // status bar color
+  ));
   runApp(MyApp());
 }
 
@@ -70,24 +75,28 @@ class _TennisMoaState extends State<TennisMoa> {
       body: Center(
         child: _screens[_selectedIndex],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        iconSize: 28,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        //unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedFontSize: 9,
-        unselectedFontSize: 9,
-        backgroundColor: Colors.white,
-        onTap: _onTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.emoji_events_outlined), label: '대회'),
-          BottomNavigationBarItem(icon: Icon(Icons.smart_display_outlined), label: '동영상'),
-          BottomNavigationBarItem(icon: Icon(Icons.feed_outlined), label: '뉴스'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_search_outlined), label: '함께해요'),
-        ],
+      bottomNavigationBar: SizedBox(
+        height: 46,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          iconSize: 28,
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.deepPurple,
+          //unselectedItemColor: Colors.grey,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedFontSize: 8,
+          unselectedFontSize: 8,
+          selectedLabelStyle: TextStyle(fontFamily: 'NanumSquare'),
+          backgroundColor: Colors.white,
+          onTap: _onTapped,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: '대회'),
+            BottomNavigationBarItem(icon: Icon(Icons.smart_display), label: '동영상'),
+            BottomNavigationBarItem(icon: Icon(Icons.feed), label: '뉴스'),
+            BottomNavigationBarItem(icon: Icon(Icons.person_search), label: '함께해요'),
+          ],
+        ),
       ),
     );
   }

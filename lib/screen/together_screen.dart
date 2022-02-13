@@ -35,20 +35,24 @@ class _TogetherScreenState extends State<TogetherScreen> with SingleTickerProvid
       appBar: AppBar(
         title: const Text(
           '테니스 함께해요',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+          style:
+              TextStyle(color: Colors.deepPurple, fontFamily: 'NanumSquare', fontWeight: FontWeight.bold, fontSize: 17),
         ),
         backgroundColor: Colors.white,
         elevation: 0.5,
-        bottom: TabBar(
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.grey,
-          labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-          indicator: const DotIndicator(),
-          indicatorWeight: 1,
-          isScrollable: true,
-          controller: _tabController,
-          tabs: _tabs,
-          onTap: (int index) {},
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(28),
+          child: TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            labelStyle: const TextStyle(fontFamily: 'NanumSquare', fontWeight: FontWeight.bold, fontSize: 15),
+            indicator: const DotIndicator(),
+            indicatorWeight: 1,
+            isScrollable: true,
+            controller: _tabController,
+            tabs: _tabs,
+            onTap: (int index) {},
+          ),
         ),
       ),
       body: TabBarView(

@@ -151,6 +151,7 @@ class _CommonWebViewState extends State<CommonWebView> {
                   AutoOrientation.portraitAutoMode();
                 },
               ),
+              /*
               progress < 1.0
                   ? LinearProgressIndicator(
                       value: progress,
@@ -158,6 +159,8 @@ class _CommonWebViewState extends State<CommonWebView> {
                       minHeight: 3,
                     )
                   : Container(),
+
+               */
             ],
           ),
         ),

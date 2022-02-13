@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class DotIndicator extends Decoration {
   const DotIndicator({
-    this.color = const Color(0xff9fd600), //aeea00, abe500, a3db00
-    this.radius = 4.0,
+    this.color = Colors.deepPurple, //aeea00, abe500, a3db00, 9fd600
+    this.radius = 4.3,
   });
 
   final Color color;

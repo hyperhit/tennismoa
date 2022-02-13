@@ -151,6 +151,7 @@ class _VideoWebViewState extends State<VideoWebView> {
                   AutoOrientation.portraitAutoMode();
                 },
               ),
+              /*
               progress < 1.0
                   ? LinearProgressIndicator(
                       value: progress,
@@ -158,6 +159,8 @@ class _VideoWebViewState extends State<VideoWebView> {
                       minHeight: 3,
                     )
                   : Container(),
+
+               */
             ],
           ),
         ),

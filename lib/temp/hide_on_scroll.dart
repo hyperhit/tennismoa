@@ -206,11 +206,13 @@ class OutgoingPage extends StatefulWidget {
 
 class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClientMixin<OutgoingPage> {
   final items = List<String>.generate(10000, (i) => "Call $i");
+
+  //late WebViewController _controller;
   double _height = 1;
+
   final GlobalKey webViewKey = GlobalKey();
 
   late InAppWebViewController? webViewController;
-
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
       crossPlatform: InAppWebViewOptions(
         useShouldOverrideUrlLoading: true,
@@ -330,25 +332,21 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
         body: Center(
           child: ListView.builder(
             itemCount: 1,
-            itemBuilder: (context, int index) {
+            itemBuilder: (BuildContext context, int index) {
               return SizedBox(
-                //height: (_height < 100 ? 500 : _height),
                 height: _height,
                 child: InAppWebView(
                   key: webViewKey,
                   contextMenu: contextMenu,
-                  initialUrlRequest: URLRequest(url: Uri.parse('https://youtube.com/user/hyungtaik76/videos')),
+                  initialUrlRequest: URLRequest(
+                      url: Uri.parse('https://www.youtube.com/results?search_query=%ED%85%8C%EB%8B%88%EC%8A%A4')),
                   initialUserScripts: UnmodifiableListView<UserScript>([]),
                   initialOptions: options,
                   pullToRefreshController: pullToRefreshController,
-                  onWebViewCreated: (controller) async {
+                  onWebViewCreated: (controller) {
                     webViewController = controller;
                   },
-                  onLoadStart: (controller, url) async {
-                    setState(() {
-                      this.url = url.toString();
-                    });
-                  },
+                  onLoadStart: (controller, url) {},
                   androidOnPermissionRequest: (controller, origin, resources) async {
                     return PermissionRequestResponse(
                         resources: resources, action: PermissionRequestResponseAction.GRANT);
@@ -371,27 +369,9 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
                   },
                   onLoadStop: (controller, url) async {
                     pullToRefreshController.endRefreshing();
-
-                    int? contentHeight = await webViewController?.getContentHeight();
-                    double? zoomScale = await webViewController?.getZoomScale();
-                    double htmlHeight = contentHeight!.toDouble() * zoomScale!;
-                    double htmlHeightFixed = double.parse(htmlHeight.toStringAsFixed(2));
-
-                    print('>>>>> stop: $htmlHeightFixed');
-
                     setState(() {
                       this.url = url.toString();
-                      _height = htmlHeightFixed + 0.1;
                     });
-
-                    var result = await webViewController?.evaluateJavascript(
-                        source: "new XMLSerializer().serializeToString(document);");
-                    print(result.runtimeType); // String
-                    print(result);
-
-                    // setState(() {
-                    //   this.url = url.toString();
-                    // });
                   },
                   onLoadError: (controller, url, code, message) {
                     pullToRefreshController.endRefreshing();
@@ -399,30 +379,21 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
                   onProgressChanged: (controller, progress) async {
                     if (progress == 100) {
                       pullToRefreshController.endRefreshing();
-
-                      int? contentHeight = await webViewController?.getContentHeight();
-                      double? zoomScale = await webViewController?.getZoomScale();
-                      double htmlHeight = contentHeight!.toDouble() * zoomScale!;
-                      double htmlHeightFixed = double.parse(htmlHeight.toStringAsFixed(2));
-
-                      print('>>>>> changed: $htmlHeightFixed');
-
-                      setState(() {
-                        //this.progress = progress / 100;
-                        //_height = htmlHeightFixed + 0.1;
-                      });
                     }
 
-                    // int? contentHeight = await webViewController?.getContentHeight();
-                    // double? zoomScale = await webViewController?.getZoomScale();
-                    // double htmlHeight = contentHeight!.toDouble() * zoomScale!;
-                    // double htmlHeightFixed = double.parse(htmlHeight.toStringAsFixed(2));
-                    //
-                    // print('>>>>> $htmlHeightFixed');
+                    int? contentHeight = await controller?.getContentHeight();
+                    double? zoomScale = await controller?.getZoomScale();
+                    double htmlHeight = contentHeight!.toDouble() * zoomScale!;
+                    double htmlHeightFixed = double.parse(htmlHeight.toStringAsFixed(2));
 
+                    print('>>>>> $htmlHeightFixed');
+
+                    // if (htmlHeightFixed == 0.0) {
+                    //   return;
+                    // }
                     setState(() {
                       this.progress = progress / 100;
-                      //_height = htmlHeightFixed + 0.1;
+                      _height = htmlHeightFixed + 0.1;
                     });
                   },
                   onUpdateVisitedHistory: (controller, url, androidIsReload) {
@@ -447,5 +418,5 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
   }
 
   @override
-  bool get wantKeepAlive => false;
+  bool get wantKeepAlive => true;
 }

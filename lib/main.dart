@@ -79,9 +79,10 @@ class _TennisMoaState extends State<TennisMoa> {
         height: 46,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          iconSize: 28,
+          iconSize: 25,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.deepPurple,
+          selectedItemColor: Colors.black,
+          //selectedItemColor: Color(0xff2bd982),
           //unselectedItemColor: Colors.grey,
           showSelectedLabels: true,
           showUnselectedLabels: true,

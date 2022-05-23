@@ -74,7 +74,7 @@ class _VideoScreenState extends State<VideoScreen> with SingleTickerProviderStat
           _buildWoori(),
           _buildForty(),
           _buildKataTv(),
-          _buildKataoTv(),
+          _buildKatoTv(),
           _buildMonkey(),
         ],
       ),
@@ -136,7 +136,7 @@ class _VideoScreenState extends State<VideoScreen> with SingleTickerProviderStat
     return const VideoWebView(siteUrl: url);
   }
 
-  Widget _buildKataoTv() {
+  Widget _buildKatoTv() {
     //카토
     const String url = 'https://youtube.com/c/katotennis/videos';
     return const VideoWebView(siteUrl: url);

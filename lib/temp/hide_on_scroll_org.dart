@@ -261,7 +261,7 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
 })();""";
 
     //return double.parse(await _controller.runJavascriptReturningResult(getHeightScript2));
-    return int.parse(await _controller.runJavascriptReturningResult(getHeightScript2)).toDouble();
+    return int.parse(await _controller.runJavascriptReturningResult(getHeightScript)).toDouble();
   }
 
   @override
@@ -276,11 +276,11 @@ class _OutgoingPageState extends State<OutgoingPage> with AutomaticKeepAliveClie
               return SizedBox(
                 height: _height,
                 child: WebView(
-                  initialUrl: 'http://www.naver.com',
+                  initialUrl: 'https:/www.naver.com',
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) {
                     _controller = controller;
-                    //controller.loadUrl('https://m.cafe.naver.com/ca-fe/pink4wvnx');
+                    controller.loadUrl('https:/www.naver.com');
                     //controller.currentUrl();
                   },
                   onPageFinished: (url) async {

@@ -93,7 +93,7 @@ class _CommonWebViewState extends State<CommonWebView> {
             children: [
               InAppWebView(
                 key: webViewKey,
-                // contextMenu: contextMenu,
+                contextMenu: contextMenu,
                 initialUrlRequest: URLRequest(url: Uri.parse(widget.siteUrl)),
                 initialUserScripts: UnmodifiableListView<UserScript>([]),
                 initialOptions: options,
@@ -126,6 +126,15 @@ class _CommonWebViewState extends State<CommonWebView> {
                   setState(() {
                     this.url = url.toString();
                   });
+
+                  int? contentHeight =
+                  await webViewController?.getContentHeight();
+                  double? zoomScale = await webViewController?.getZoomScale();
+                  double htmlHeight = contentHeight!.toDouble() * zoomScale!;
+                  double htmlHeightFixed =
+                  double.parse(htmlHeight.toStringAsFixed(2));
+
+                  print('>>>>> stop: $htmlHeightFixed');
                 },
                 onLoadError: (controller, url, code, message) {
                   pullToRefreshController.endRefreshing();

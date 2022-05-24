@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tennismoa/temp/hide_navigation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'screen/tournament_screen.dart';
 import 'screen/video_screen.dart';
@@ -79,10 +77,9 @@ class _TennisMoaState extends State<TennisMoa> {
         height: 46,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          iconSize: 25,
+          iconSize: 26,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
-          //selectedItemColor: Color(0xff2bd982),
+          selectedItemColor: Colors.deepPurple,
           //unselectedItemColor: Colors.grey,
           showSelectedLabels: true,
           showUnselectedLabels: true,
